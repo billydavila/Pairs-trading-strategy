@@ -1,17 +1,14 @@
 # Pairs-trading-strategy
 
-# Objective: In this repository, we will create a pairs trading strategy between two cointegrated instruments (two ETFs: EWA and EWC) 
+# Objective: In this repository, we will create a pairs trading strategy using two commodities(Lead and Aluminium) future data from April 2014 to July 2016.   
 
 # Background
-Statistical Arbitrage is a group of trading strategies employing large, diverse portfolio that are traded on a very short-term basis. One example of a statistical arbitrage is the pairs trading strategy. 
-
-Pairs trading is a contrarian strategy designed to harness mean-reverting behavior of cointegrated instruments. By forming a portfolio of two or more instruments such that the portfolio is stationary, we can find instruments that are cointegrated and suitable for our strategy. Since cointegrated pairs are assumed to be mean reverting in nature, we can build a mean reverting strategy where we enter a position when the spread reaches a standard deviation away from its mean and close the position when it goes back to its mean.
-
+Arbitrage in commodities can be found in three instances: cash and carry, future calendar spread, and inter-commodity arbitrage. Our focus in this repository will be inter-commodity arbitrage. By considering different commodities on the same exchange having the same cash flow or in the same category, there is a possibility for creating an inter-commodity arbitrage. One example could be the pair commodity Lead and Aluminium which are in the same market category (metal) with a similar cash flow. The strategy suggests to take positions against the general norms of the market, short the overperforming asset, go long the underperforming one. The idea is that cointegrated assets are mean-reverting in nature. Hence, the bought underperforming asset will likely rise and the sold underperforming asset will likely fall back to its mean. Cointegrated assets are found when the spread of the portfolio is stationary. To find a linear combination, we use a Linear Regression. To check if the linear combination or the spread is stationary, we use the augmented dicker-fuller test. The lookback period chose to perform the linear regression was 90 days. For entering a position, we used a threshold and z-score to determine the position to take. If the z-score is above the threshold, we take a short position. If the z-score is below the negative threshold, we take a long position. For exiting the position, we used stop loss, take profit, and cointegration break status.
 
 # Financial Data
-We gather the data for the two ETFs: EWC and EWA from yahoo finance for dates from 2010-01-01 to 2020-12-31. Build the spread between the two instruments by doing a regression. Once we have the spread, we did an augmented dickey-fuller for checking the stationarity in the spread. If the spread is stationary, we have found cointegrated pairs which are mean-reverting in nature and perform the strategy. 
+We used quandl to gather future data for two commodities(Lead and Aluminium). The collected data was stored in two separated CSV files. The collected data was from date April 2014 to July 2016. Before employing the strategy, we cleaned the data and ensure we only deal with common dates only. As a threshold decider, we used a 1.75 standard deviation away from the mean. The stop loss trigger is -10000 and the take profit trigger is 20000.   
 
 # Analysis Results
-For the analysis, we only calculated the Hit Ratio, Sharpe Ratio, Standard deviation of returns, Cumulative PNL, positive trades, negative trades, and Drawdowns of the strategy. We did not calculate more sophisticated profitable return measurements.
+For the analysis results, we only calculated: the Hit Ratio, Sharpe Ratio, Positive trades, Negative Trades, and total Profit & Loss.   
 
 
